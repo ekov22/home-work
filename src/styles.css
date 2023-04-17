@@ -1,0 +1,70 @@
+#h1 :hover {
+    color: #648880;
+}
+
+.header1 {
+    text-align: center;
+}
+
+#id {
+    border-width: 0px;
+}
+
+label {
+    font-size: 18px;
+}
+
+.material-icons {
+    font-size: 18px;
+    background-color: transparent;
+    border: none;
+}
+
+.item-container {
+    display: flex;
+    flex-direction: column;
+    width: 18%;
+    margin: auto;
+}
+
+.item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.item .item-name {
+    flex-grow: 1;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+body {
+
+    background: #d7e2eb;
+    color: #584151;
+}
+
+.createButton {
+    font-size: 24px;
+    padding: 14px 40px;
+    border-radius: 8px;
+    border: 2px solid #bba1b9;
+    transition-duration: 3s;
+    cursor: pointer;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: flex;
+    margin: auto;
+    margin-top: 2%;
+    margin-bottom: 2%;
+
+}
+
+.createButton:hover {
+    background-color: #dbdf9e;
+    /* Green */
+    color: rgb(32, 0, 21);
+    box-shadow: 0 16px 32px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19);
+
+}
