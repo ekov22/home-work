@@ -8,23 +8,27 @@
 </head>
 
 <body onload="itemIsLoaded()">
-	<h1>TODO items</h1>
+	<h1 class="header1">TODO items</h1>
 	
-		<div>
+		<div class="item-container">
 			<label for="text">Title:</label>
 			<input id="title"/>
 		</div>
-		<div>
+		<div class="item-container">
 			<label for="date">Date and time:</label>
 			<input type="datetime-local" id="date" name="date&time"/>
 		</div>
-		<div>
+		<div class="item-container">
 			<label for="text">To do:</label>
 			<textarea name="message" id="description" rows="3" cols="33">do stuff</textarea>
 		</div>
-		<div>
-			<button id="createButton" onclick="createItem()">Create item</button>
-			<button id="updateButton" onclick="updateItem()">Update item</button>
+		<div class="item-container">
+			<button class="createButton" id="createButton" onclick="createItem()">Create item</button>
+			<br>
+			<button class="createButton" id="updateButton" onclick="updateItem()">Update item</button>
+			<br>
+			<button class="createButton" id="cancelButton" onclick="cancelItemUpdate()">Cancel item update</button>
+		</div>
 		</div>
 	</div>
 </body>

@@ -25,6 +25,15 @@ label {
     flex-direction: column;
     width: 18%;
     margin: auto;
+    
+}
+
+.item-container:hover {
+    /* background-color: #f1cef0; */
+    color: rgb(32, 0, 21);
+    box-shadow: 0 16px 32px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 10px;
+
 }
 
 .item {
@@ -51,7 +60,7 @@ body {
     padding: 14px 40px;
     border-radius: 8px;
     border: 2px solid #bba1b9;
-    transition-duration: 3s;
+    transition-duration: 2s;
     cursor: pointer;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     display: flex;
@@ -62,9 +71,21 @@ body {
 }
 
 .createButton:hover {
-    background-color: #dbdf9e;
-    /* Green */
+    background-color: #f1cef0;
     color: rgb(32, 0, 21);
     box-shadow: 0 16px 32px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19);
 
 }
+
+.footer {
+    text-align: center;
+
+}
+
+/* #counter1 {
+    display: flex;
+    align-items: center;
+    margin: auto;
+    margin-bottom: 1%;
+
+} */

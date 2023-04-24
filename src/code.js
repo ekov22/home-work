@@ -38,6 +38,14 @@ class ItemStorage {
 
         this.saveAll(savedItems);
     }
+    update(item) {
+        const savedItems = this.getAll();
+        const savedItem = savedItems.find(x => x.id === item.id);
+        savedItem.title = item.title;
+        savedItem.date = item.date;
+        savedItem.description = item.description;
+        this.saveAll(savedItems);
+    }
 }
 
 class SelectedIdStorage {
@@ -61,7 +69,6 @@ class SelectedIdStorage {
         const savedIds = this.getAll();
         const filteredIds = savedIds.filter(idNotToDelete => idNotToDelete !== id)
         this.saveAll(filteredIds);
-        //або через findIdex() і  Splice()
 
     }
 
@@ -73,6 +80,7 @@ class SelectedIdStorage {
     saveAll(ids) {
         localStorage.setItem(this.key, JSON.stringify(ids));
     }
+
 }
 
 const storage = new ItemStorage();
@@ -95,12 +103,35 @@ function createItem() {
     const description = document.getElementById('description').value;
     const item = new Item(id, title, date, description);
     storage.createOrUpdate(item);
-    //console.log(storage.getAll()); redirect to index.html 
     navigateToNewList();
+}
+
+function updateItem() {
+    //id iz href
+    //element zminutu .value
+    const searchParams = new URLSearchParams(window.location.search);
+    const id = +searchParams.get("id");
+    const title = document.getElementById('title').value;
+    const date = document.getElementById('date').value;
+    const description = document.getElementById('description').value;
+    const item = new Item(id, title, date, description);
+    storage.update(item);
+
+
+    navigateToNewList();
+
+}
+
+function cancelItemUpdate() {
+    navigateToNewList();
+
 }
 
 function showItems() {
     const items = storage.getAll();
+
+
+
     // create and insert every item to container
     items.forEach(element => createAndInsertItem(element));
 }
@@ -117,7 +148,7 @@ function createAndInsertItem(item) {
     inputElement.setAttribute('type', 'checkbox');
     inputElement.setAttribute('id', `item${item.id}`);
     inputElement.checked = selectedIdStorage.isSelected(item.id);         //onclick - checked - saved to localstorage/ value checked v inputelement
-    //inputElement
+    
     //inputElement.value = selectedIdStorage.add(item.id);
     // TODO: Hot to say selected items? => inputElement.value
     const labelElement = document.createElement('label');
@@ -125,6 +156,12 @@ function createAndInsertItem(item) {
     labelElement.setAttribute('for', `item${item.id}`);
     labelElement.setAttribute('title', item.title);
     labelElement.innerText = item.title;
+
+    const buttonElementRemove = document.createElement('button');     //TUT REMOVE
+    buttonElementRemove.innerText = 'remove';
+    buttonElementRemove.setAttribute('class', 'material-icons icon-font-size');
+    buttonElementRemove.addEventListener("click", () => removeFunction(item.id));
+
     const buttonElement = document.createElement('button');
     buttonElement.innerText = 'edit';
     buttonElement.setAttribute('class', 'material-icons icon-font-size');
@@ -132,9 +169,19 @@ function createAndInsertItem(item) {
     rootElement.appendChild(inputElement);
     rootElement.appendChild(labelElement);
     rootElement.appendChild(buttonElement);
+    rootElement.appendChild(buttonElementRemove);
+
     const container = document.getElementById('container');
     container.appendChild(rootElement);
     //document.body.insertBefore(element, container);
+
+    
+    
+
+
+}
+
+function removeFunction(){
 
 }
 
@@ -146,6 +193,7 @@ function navigateToNewList() {
     location.href = 'file:///C:/Users/Admin/Documents/GitHub/home-work/src/index.html';
 }
 
+
 function itemIsLoaded() {
     const searchParams = new URLSearchParams(window.location.search);
     const id = searchParams.get("id");
@@ -156,7 +204,24 @@ function itemIsLoaded() {
 
     }
 }
+
+// function displayCounter() {
+//     if ('localStorage' in window && window['localStorage'] !== null) {
+//         ('counter1' in localStorage && localStorage['counter1'] !== null) ? localStorage['counter1']++ : localStorage['counter1'] = 0;
+//         var counter1 = document.getElementById('counter1');
+//         if (!counter1) { return };
+//         counter1.innerHTML = 'Hello, nice to see you back ' + localStorage['counter1'] + ' times.';
+//     }
+// }
+// // call the 'displayCounter()' function when the web page is loaded
+// window.onload = function () {
+//     displayCounter();
+// }
+
 // Task 16. Edit item
 //1. In update mode write property of object to html elements.
 //2. Add cancel button in update mode (redirect to main page).
 //3. Implement logic for updateItem function.
+
+//checked save to localstorage v selectedItemsIds
+//button remove item
