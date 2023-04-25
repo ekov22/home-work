@@ -149,6 +149,12 @@ function createAndInsertItem(item) {
     inputElement.setAttribute('id', `item${item.id}`);
     inputElement.checked = selectedIdStorage.isSelected(item.id);         //onclick - checked - saved to localstorage/ value checked v inputelement
     
+    //listener on value changed (checkbox)
+    inputElement.addEventListener('change', function() { changeCheckboxFunction(item.id, this.checked); });
+    
+
+
+
     //inputElement.value = selectedIdStorage.add(item.id);
     // TODO: Hot to say selected items? => inputElement.value
     const labelElement = document.createElement('label');
@@ -158,7 +164,7 @@ function createAndInsertItem(item) {
     labelElement.innerText = item.title;
 
     const buttonElementRemove = document.createElement('button');     //TUT REMOVE
-    buttonElementRemove.innerText = 'remove';
+    buttonElementRemove.innerText = 'delete';
     buttonElementRemove.setAttribute('class', 'material-icons icon-font-size');
     buttonElementRemove.addEventListener("click", () => removeFunction(item.id));
 
@@ -181,7 +187,20 @@ function createAndInsertItem(item) {
 
 }
 
-function removeFunction(){
+function removeFunction(id){
+    console.log(id);
+}
+
+function changeCheckboxFunction(id, isChecked){     //peredacha i otrumuvannya danuh
+    isChecked
+        ? selectedIdStorage.add(id)
+        : selectedIdStorage.remove(id);
+
+    // if (isChecked) {
+    //     selectedIdStorage.add(id);
+    // } else {
+    //     selectedIdStorage.remove(id);
+    // }
 
 }
 
