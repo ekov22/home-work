@@ -46,6 +46,14 @@ class ItemStorage {
         savedItem.description = item.description;
         this.saveAll(savedItems);
     }
+    
+    remove(id) {
+        const savedIds = this.getAll();
+        const filteredIds = savedIds.filter(x => x.id !== id);
+        this.saveAll(filteredIds);
+
+
+    }
 }
 
 class SelectedIdStorage {
@@ -67,7 +75,7 @@ class SelectedIdStorage {
 
     remove(id) {
         const savedIds = this.getAll();
-        const filteredIds = savedIds.filter(idNotToDelete => idNotToDelete !== id)
+        const filteredIds = savedIds.filter(idNotToDelete => idNotToDelete !== id);
         this.saveAll(filteredIds);
 
     }
@@ -187,8 +195,12 @@ function createAndInsertItem(item) {
 
 }
 
-function removeFunction(id){
-    console.log(id);
+function removeFunction(id){                              //delete from selectedId and html, cherez confirm
+    storage.remove(id);
+    selectedIdStorage.remove(id);
+
+
+    navigateToNewList();
 }
 
 function changeCheckboxFunction(id, isChecked){     //peredacha i otrumuvannya danuh
