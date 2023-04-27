@@ -218,6 +218,8 @@ function changeCheckboxFunction(id, isChecked){     //peredacha i otrumuvannya d
 
 function editFunction(id) {
     location.href = `file:///C:/Users/Admin/Documents/GitHub/home-work/src/item.html?id=${id}`;
+
+    
 }
 
 function navigateToNewList() {
@@ -228,13 +230,20 @@ function navigateToNewList() {
 function itemIsLoaded() {
     const searchParams = new URLSearchParams(window.location.search);
     const id = searchParams.get("id");
-    if (id && storage.get(+id)) {
+    const item = id && storage.get(+id);
+    if (item) {
         document.getElementById('createButton')?.remove();
+        document.getElementById('title').value = item.title;
+        document.getElementById('date').value = item.date;
+        document.getElementById('description').value = item.description;
     } else {
         document.getElementById('updateButton')?.remove();
 
     }
+    
 }
+
+
 
 // function displayCounter() {
 //     if ('localStorage' in window && window['localStorage'] !== null) {
