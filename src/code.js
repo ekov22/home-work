@@ -115,8 +115,6 @@ function createItem() {
 }
 
 function updateItem() {
-    //id iz href
-    //element zminutu .value
     const searchParams = new URLSearchParams(window.location.search);
     const id = +searchParams.get("id");
     const title = document.getElementById('title').value;
@@ -138,9 +136,6 @@ function cancelItemUpdate() {
 function showItems() {
     const items = storage.getAll();
 
-
-
-    // create and insert every item to container
     items.forEach(element => createAndInsertItem(element));
 }
 
@@ -171,7 +166,7 @@ function createAndInsertItem(item) {
     labelElement.setAttribute('title', item.title);
     labelElement.innerText = item.title;
 
-    const buttonElementRemove = document.createElement('button');     //TUT REMOVE
+    const buttonElementRemove = document.createElement('button');     
     buttonElementRemove.innerText = 'delete';
     buttonElementRemove.setAttribute('class', 'material-icons icon-font-size');
     buttonElementRemove.addEventListener("click", () => removeFunction(item.id));
@@ -189,13 +184,9 @@ function createAndInsertItem(item) {
     container.appendChild(rootElement);
     //document.body.insertBefore(element, container);
 
-    
-    
-
-
 }
 
-function removeFunction(id){                              //delete from selectedId and html, cherez confirm
+function removeFunction(id){                              
     storage.remove(id);
     selectedIdStorage.remove(id);
 
@@ -243,7 +234,15 @@ function itemIsLoaded() {
     
 }
 
+const userDate = new Date();
 
+const UserMinutes = userDate.getMinutes();
+
+const minutesOddOrEven = userDate.getMinutes() % 2;
+
+const redBlueFooter = minutesOddOrEven
+    ? document.getElementById('counter1').style.backgroundColor='#3e7dad'
+    : console.log('ok')
 
 // function displayCounter() {
 //     if ('localStorage' in window && window['localStorage'] !== null) {
